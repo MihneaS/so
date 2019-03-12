@@ -4,17 +4,8 @@
 #include "utils/utils.h"
 #include "priority_queue.h"
 
-#define TOP_COMM "top"
-#define POP_COMM "pop"
-#define INS_COMM "insert"
-
 #define MAX_LINE_LEN 20000
 #define MAX_TOKENS 100
-
-#define ALLOC_FAIL 12
-/* DE CE 12???
- * Unde gasesc o lista de astfel de coduri?
- */
 
 int tokenize(char *line, char **tokens, int *tokens_len)
 {
@@ -60,7 +51,6 @@ char *interpret_and_execute(char **toks, int toks_len, PriorityQueue *pqueue)
 	if (strcmp(toks[0], "insert") == 0 && toks_len == 3) {
 		if (is_word(toks[1]) && is_integer(toks[2])) {
 			n = insert(pqueue, toks[1], atoi(toks[2]));
-			/* DIE(n == NULL, "insert failed"); */
 			if (n == NULL)
 				exit(ALLOC_FAIL);
 		}
@@ -82,7 +72,6 @@ int main(int argc, char **argv)
 
 	PriorityQueue *pq = create_priority_queue();
 
-	/* DIE(pq == NULL, "failed to create priority queue"); */
 	if (pq == NULL)
 		return ALLOC_FAIL;
 

@@ -13,6 +13,11 @@
 
 #define MAX_DEATH_DESCR 250
 
+#ifndef ENOMEM
+#define ENOMEM 12
+#endif
+#define ALLOC_FAIL ENOMEM
+
 /* useful macro for handling error codes */
 #define DIE(assertion, call_description)				\
 	do {								\
