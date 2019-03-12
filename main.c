@@ -11,6 +11,11 @@
 #define MAX_LINE_LEN 20000
 #define MAX_TOKENS 100
 
+#define ALLOC_FAIL 12
+/* DE CE 12???
+ * Unde gasesc o lista de astfel de coduri?
+ */
+
 int tokenize(char *line, char **tokens, int *tokens_len)
 {
 	char delim[] = " \t\n\r";
@@ -57,7 +62,7 @@ char *interpret_and_execute(char **toks, int toks_len, PriorityQueue *pqueue)
 			n = insert(pqueue, toks[1], atoi(toks[2]));
 			/* DIE(n == NULL, "insert failed"); */
 			if (n == NULL)
-				exit(12);
+				exit(ALLOC_FAIL);
 		}
 	} else if (strcmp(toks[0], "top") == 0 && toks_len == 1) {
 		return top(pqueue);
@@ -79,7 +84,7 @@ int main(int argc, char **argv)
 
 	/* DIE(pq == NULL, "failed to create priority queue"); */
 	if (pq == NULL)
-		return 12;
+		return ALLOC_FAIL;
 
 	char line[MAX_LINE_LEN];
 	char *fgets_ret;

@@ -190,7 +190,6 @@ run_until_success()
     NR_RUNS=1000 # How many times to run
 
     for ((i = 0; i < $NR_RUNS; i++)); do
-        echo run_until_success:$i
         DEBUG $i
         init_test
         export "$1_limit"=$i
