@@ -55,7 +55,9 @@ char *interpret_and_execute(char **toks, int toks_len, PriorityQueue *pqueue)
 	if (strcmp(toks[0], "insert") == 0 && toks_len == 3) {
 		if (is_word(toks[1]) && is_integer(toks[2])) {
 			n = insert(pqueue, toks[1], atoi(toks[2]));
-			DIE(n == NULL, "insert failed");
+			/* DIE(n == NULL, "insert failed"); */
+			if (n == NULL)
+				exit(12);
 		}
 	} else if (strcmp(toks[0], "top") == 0 && toks_len == 1) {
 		return top(pqueue);
