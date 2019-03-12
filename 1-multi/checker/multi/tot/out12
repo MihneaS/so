@@ -1,0 +1,41 @@
+	{1:sue;4:B;32}
+		{32:wanda;3:R;281}
+	{198:timothy;4:B;32}
+			{281:michael;2:B;1332}
+{614:mildred;5:R;659}
+	{659:casey;4:B;763}
+		{763:marion;3:R;281}
+	{1186:jayne;4:B;763}
+				{1332:david;1:B;3523}
+{1514:karen;5:R;2180}
+	{2180:suzanne;4:B;2363}
+		{2363:daniel;3:R;2514}
+{2478:rachel;5:R;2500}
+	{2500:jeffrey;4:B;2363}
+			{2514:helen;2:B;1332}
+	{2520:randall;4:B;2530}
+		{2530:roberto;3:R;2514}
+{	2602:amanda;4:B;2530}
+{3297:darryl;5:R;2602}
+					{3523:joseph;0:B;0}
+{3526:virginia;5:R;3734}
+	{3734:dolores;4:B;4014}
+{3751:janet;5:R;3734}
+		{4014:sarah;3:R;4381}
+	{4160:ralph;4:B;4014}
+{4279:curtis;5:R;4160}
+			{4381:christian;2:B;5681}
+	{4400:amy;4:B;4690}
+{4415:dorothy;5:R;4400}
+		{4690:harriett;3:R;4381}
+{4707:kelley;5:R;5641}
+	{5641:james;4:B;4690}
+				{5681:jessica;1:B;3523}
+{5742:myra;5:R;6156}
+	{6156:melinda;4:B;6487}
+		{6487:maureen;3:R;6690}
+{6517:jason;5:R;6527}
+	{6527:vernon;4:B;6487}
+{6567:gloria;5:R;6527}
+			{6690:antonina;2:B;5681}
+		{6805:stephen;3:B;6690}
