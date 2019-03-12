@@ -42,7 +42,7 @@ struct RedBlackTree {
 struct RedBlackTree *create_RBTree(void);
 void rise(struct RedBlackTree *rbtree, struct Node *x);
 void insert_fixup(struct RedBlackTree *rbtree, struct Node *problem);
-struct Node *insert_value(struct RedBlackTree *rbtree, struct Entry entry);
+int insert_value(struct RedBlackTree *rbtree, struct Entry entry);
 struct Node *minimum_node(struct RedBlackTree *rbtree, struct Node *source);
 struct Node *maximum_node(struct RedBlackTree *rbtree, struct Node *source);
 void remove_fixup(struct RedBlackTree *rbtree, struct Node *double_black);

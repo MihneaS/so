@@ -44,24 +44,26 @@ int is_word(char *str)
 	return 1;
 }
 
-char *interpret_and_execute(char **toks, int toks_len, PriorityQueue *pqueue)
+int interpret_and_execute(char **toks, int toks_len, PriorityQueue *pqueue,
+		char **result)
 {
-	struct Node *n;
+	int ret_code;
 
+	*result = NULL;
 	if (strcmp(toks[0], "insert") == 0 && toks_len == 3) {
 		if (is_word(toks[1]) && is_integer(toks[2])) {
-			n = insert(pqueue, toks[1], atoi(toks[2]));
-			if (n == NULL)
-				exit(ALLOC_FAIL);
+			ret_code = insert(pqueue, toks[1], atoi(toks[2]));
+			if (ret_code != 0)
+				return ret_code;
 		}
 	} else if (strcmp(toks[0], "top") == 0 && toks_len == 1) {
-		return top(pqueue);
+		*result = top(pqueue);
 	} else if (strcmp(toks[0], "pop") == 0 && toks_len == 1) {
 		pop(pqueue);
 	} else if (strcmp(toks[0], "_print") == 0)
 		println(pqueue);
 
-	return NULL;
+	return 0;
 }
 
 int main(int argc, char **argv)
@@ -82,6 +84,7 @@ int main(int argc, char **argv)
 	char *toks[MAX_TOKENS];
 	int toks_len;
 	char *res;
+	int ret_code;
 
 	char ddescrfgets[MAX_DEATH_DESCR];
 
@@ -108,7 +111,10 @@ int main(int argc, char **argv)
 			if (!feof(in)) {
 				DIE(fgets_ret == NULL, ddescrfgets);
 				tokenize(line, toks, &toks_len);
-				res = interpret_and_execute(toks, toks_len, pq);
+				ret_code = interpret_and_execute(toks,
+						toks_len, pq, &res);
+				if (ret_code != 0)
+					return ret_code;
 				if (res != NULL)
 					printf("%s\n", res);
 			}

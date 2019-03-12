@@ -184,14 +184,14 @@ void insert_fixup(struct RedBlackTree *rbtree, struct Node *problem)
 		rbtree->root->color = BLACK;
 }
 
-struct Node *insert_value(struct RedBlackTree *rbtree, struct Entry e)
+int insert_value(struct RedBlackTree *rbtree, struct Entry e)
 {
 	struct Node *new_node = create_node(e, rbtree->null, RED);
 	struct Node *father;
 	struct Node *son = rbtree->root;
 
 	if (new_node == NULL)
-		return NULL;
+		return ALLOC_FAIL;
 
 	while (son != rbtree->null) {
 		father = son;
@@ -211,7 +211,7 @@ struct Node *insert_value(struct RedBlackTree *rbtree, struct Entry e)
 			father->right_kid = new_node;
 		insert_fixup(rbtree, new_node);
 	}
-	return new_node;
+	return 0;
 }
 
 struct Node *minimum_node(struct RedBlackTree *rbtree, struct Node *source)

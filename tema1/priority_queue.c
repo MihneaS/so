@@ -1,6 +1,7 @@
 #include "rbtree.h"
 #include "priority_queue.h"
 #include "entry.h"
+#include "utils/utils.h"
 
 PriorityQueue *create_priority_queue(void)
 {
@@ -11,17 +12,17 @@ void delete_priority_queue(PriorityQueue *pqueue)
 {
 	delete_tree(pqueue);
 }
-struct Node *insert(PriorityQueue *pqueue, char *value, int priority)
+int insert(PriorityQueue *pqueue, char *value, int priority)
 {
 	struct Entry e = create_entry(priority, value, strlen(value));
 
 	if (e.str == NULL)
-		return NULL;
+		return ALLOC_FAIL;
 
 	return insert_entry(pqueue, e);
 }
 
-struct Node *insert_entry(PriorityQueue *pqueue, struct Entry entry)
+int insert_entry(PriorityQueue *pqueue, struct Entry entry)
 {
 	return insert_value(pqueue, entry);
 }

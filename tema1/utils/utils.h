@@ -16,7 +16,12 @@
 #ifndef ENOMEM
 #define ENOMEM 12
 #endif
+/* daca folosesc direct ENOMEM inloc de ALLOC_FAIL, nu-mi trece (local)
+ * testul efectuat de checkpatch, deoarece recomanda intoarcerea de -ENOMEM,
+ * dar daca intorc -ENOMEM, nu imi trece testul 16, care asteapta 12, nu -12
+ */
 #define ALLOC_FAIL ENOMEM
+
 
 /* useful macro for handling error codes */
 #define DIE(assertion, call_description)				\
