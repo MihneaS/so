@@ -75,7 +75,9 @@ int main(int argc, char **argv)
 
 	PriorityQueue *pq = create_priority_queue();
 
-	DIE(pq == NULL, "failed to create priority queue");
+	/* DIE(pq == NULL, "failed to create priority queue"); */
+	if (pq == NULL)
+		return 12;
 
 	char line[MAX_LINE_LEN];
 	char *fgets_ret;
