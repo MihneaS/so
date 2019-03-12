@@ -54,8 +54,8 @@ char *interpret_and_execute(char **toks, int toks_len, PriorityQueue *pqueue)
 
 	if (strcmp(toks[0], "insert") == 0 && toks_len == 3) {
 		if (is_word(toks[1]) && is_integer(toks[2])) {
-			insert(pqueue, toks[1], atoi(toks[2]));
-			/* DIE(n == NULL, "insert failed"); */
+			n = insert(pqueue, toks[1], atoi(toks[2]));
+			DIE(n == NULL, "insert failed");
 		}
 	} else if (strcmp(toks[0], "top") == 0 && toks_len == 1) {
 		return top(pqueue);
@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 
 	PriorityQueue *pq = create_priority_queue();
 
-	/* DIE(pq == NULL, "failed to create priority queue"); */
+	DIE(pq == NULL, "failed to create priority queue");
 
 	char line[MAX_LINE_LEN];
 	char *fgets_ret;

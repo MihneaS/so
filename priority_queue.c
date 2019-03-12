@@ -18,8 +18,7 @@ struct Node *insert(PriorityQueue *pqueue, char *value, int priority)
 	if (e.str == NULL)
 		return NULL;
 
-	return insert_entry(pqueue,
-			create_entry(priority, value, strlen(value)));
+	return insert_entry(pqueue, e);
 }
 
 struct Node *insert_entry(PriorityQueue *pqueue, struct Entry entry)
