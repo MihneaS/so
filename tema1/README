@@ -1,0 +1,66 @@
+Nume:	Mihnea SERBAN
+Grupă:	331CA
+
+# Tema 1
+
+Organizare
+-
+1. Explicație pentru structura creată (sau soluția de ansamblu aleasă):
+
+***Obligatoriu:*** 
+* De făcut referință la abordarea generală menționată în paragraful de mai sus. Aici se pot băga bucăți de cod/funcții - etc.
+Am folosit un Red-Black Tree pentru a implementa coada de prioritati.
+
+* Consideri că tema este utilă?
+Tema a fost utila ca o introducere in lucrul pe ambele sisteme de operare, aprofundare in lucrul cu librariile partajate,
+o avertrizare ca de acum incolo trebuie sa avem mare grija la tratarea exceptiilor si o prima degustare a celui mai sever coding style
+(8 spatii pe tab! T_T)
+Tema aceasta a fost ocazia perfecta sa imi elimin buggurile din Red-Black Tree-ul scris de mine ^.^ (pt tema la aa)
+
+* Consideri implementarea naivă, eficientă, se putea mai bine?
+Consider implementarea mea ca fiind foarte eficienta.
+
+***Opțional:***
+* De menționat cazuri speciale (corner cases), nespecificate în enunț și cum au fost tratate.
+Implementarea mea (ca orice implementare de Red-Black Tree) poate tine si chei (prioritati) cu aceeasi valoare.
+Nu am testat si aici acest lucru, dar am testat asta in tema originala (vedeti test02.cpp test03.cpp test.04.cpp si test_insert.cpp).
+Obs: in tema originala RedBlackTree<T> va retine pointeri la T.
+https://github.com/MihneaS/aa/tree/master/tema/rbtree
+
+
+Implementare
+-
+
+* De specificat dacă întregul enunț al temei e implementat
+da
+* Dacă există funcționalități extra, pe lângă cele din enunț
+Suporta chei identice (vezi mai sus la Optional)
+comanda _print va printa toate nodurile in oridne crescatoare dupa chei in formatul {cheie:nume;adancime:culoare;cheie_parinte}, pentru debugging
+
+* Dificultăți întâmpinate
+nu am stitut cum sa specific unde sa caute dll-ul.... pana mi-am dat seama ca daca e in acelasi folder cu executabilul va fi ok
+##IMPORTANT##: am vrut sa folosesc macroul "oficial" (ENOMEM) pentru eroarea lui malloc (testata de ultimul test) dar NU AM PUTUT:
+daca foloseam ENOMEM (in loc de ALLOC_FAIL) imi pica la coding style, ca trebuia sa intorc -ENOMEM. Daca intorceam -ENOMEM pica ultimul test...
+
+
+* Lucruri interesante descoperite pe parcurs
+git bash din windows are vim <3
+
+Cum se compilează și cum se rulează?
+-
+* Explicație, ce biblioteci linkează, cum se face build
+asa cum se cere in tema/necesita checkerul + cu bibliotecile statice facute de mine (entry, priority_queue, rbtree)
+* Cum se rulează executabilul, se rulează cu argumente (sau nu)
+cum se cere in tema
+
+Bibliografie
+-
+
+* Resurse utilizate - toate resursele publice de pe internet/cărți/code snippets, chiar dacă sunt laboratoare de SO
+https://github.com/MihneaS/aa/tree/master/tema/rbtree
+labul 1 de so
+Introduction to Algoritms de Cormen si https://youtu.be/aA-nLw28eUw pentru am-mi corecta rbtree-ul
+
+Git
+-
+https://github.com/MihneaS/so
