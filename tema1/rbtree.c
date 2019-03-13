@@ -234,11 +234,11 @@ struct Node *maximum_node(struct RedBlackTree *rbtree, struct Node *source)
 
 void remove_fixup(struct RedBlackTree *rbtree, struct Node *double_black)
 {
-	while (double_black != rbtree->root && double_black->color == BLACK) {
-		struct Node *bro = brother(double_black);
-		struct Node *nephew_alike;
-		struct Node *nephew_not_alike;
+	struct Node *bro = brother(double_black);
+	struct Node *nephew_alike;
+	struct Node *nephew_not_alike;
 
+	while (double_black != rbtree->root && double_black->color == BLACK) {
 		if (is_right_kid(double_black)) {
 			nephew_alike = bro->right_kid;
 			nephew_not_alike = bro->left_kid;
@@ -366,10 +366,10 @@ int is_empty(struct RedBlackTree *rbtree)
 
 void printr_node(struct Node *source, struct Node *null, int adancime)
 {
-	if (source == null)
-		return;
 	char color;
 
+	if (source == null)
+		return;
 	if (source->color == BLACK)
 		color = 'B';
 	else
@@ -384,11 +384,10 @@ void printr_node(struct Node *source, struct Node *null, int adancime)
 void printr_node_tabbed(struct Node *source, struct Node *null, int adancime)
 {
 	int i;
+	char color;
 
 	if (source == null)
 		return;
-	char color;
-
 	if (source->color == BLACK)
 		color = 'B';
 	else

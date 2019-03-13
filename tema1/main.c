@@ -72,11 +72,6 @@ int main(int argc, char **argv)
 	int fnc = 0;
 	FILE *in = NULL;
 
-	PriorityQueue *pq = create_priority_queue();
-
-	if (pq == NULL)
-		return ALLOC_FAIL;
-
 	char line[MAX_LINE_LEN];
 	char *fgets_ret;
 	int line_no = 0;
@@ -88,7 +83,12 @@ int main(int argc, char **argv)
 
 	char ddescrfgets[MAX_DEATH_DESCR];
 
-	sprintf(ddescrfgets, "%s:file reading fgets", __func__);
+	PriorityQueue *pq = create_priority_queue();
+
+	if (pq == NULL)
+		return ALLOC_FAIL;
+
+	sprintf(ddescrfgets, "%s:file reading fgets", "mf");
 
 	if (argc == 1) {
 		in = stdin;
