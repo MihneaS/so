@@ -17,8 +17,7 @@ test: $(EXEC)
 	cp *.h ./1-multi/checker/multi/tot
 	cp ./utils/* ./1-multi/checker/multi/tot
 	cd 1-multi/checker/multi &&\
-	./run_all.sh &&\
-	cd -
+	./run_all.sh
 
 
 entry.o: entry.c $(HEADERS)
@@ -34,7 +33,7 @@ main.o: $(MAIN) $(HEADERS)
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(EXEC): $(OBJS) $(HEADERS)
-	$(CC) $(FLAGS) $(OBJS) -o $@ -lcompare -L./utils
+	$(CC) $(FLAGS) $(OBJS) -o $@ -lcompare -L.
 
 run: build
 	./$(EXEC)
