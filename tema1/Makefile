@@ -30,10 +30,10 @@ main.obj: $(MAIN) $(HEADERS)
 	$(CC) $(FLAGS) /c $(MAIN)
 
 $(EXEC): $(OBJS) $(HEADERS)
-	$(CC) $(FLAGS) $(OBJS) utils\compare.lib /Fe$@
+	$(CC) $(FLAGS) $(OBJS) compare.lib /Fe$@
 
 run: build
 	$(EXEC)
 
 clean:
-	rm $(EXEC) *.o
+	del $(EXEC) *.obj
