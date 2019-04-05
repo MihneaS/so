@@ -1,0 +1,29 @@
+Nume: Serban Mihnea
+Grupă: 331CA
+
+# Tema 2
+
+# SO_FILE
+In structura mea SO_FILE am un buffer, un pointer catre pozitia curenta in
+buffer si un pointer catre prima pozitie de dupa limita valida a bufferului
+(ca in conventia c++ pt end). Cel din urma e necesar pentru citire deoarece e
+posibil sa nu fie disponibili toti cei 4096 de octeti. Mai retin si 3 alte
+informatii (vezi in Implementare de la obs incolo)
+
+# Implementare
+Asa cum se sugereaza in enuntul temei, am implementat mai intai so_fputc si
+so_fgetc iar so_fwrite si se_fread se bazeaza pe ele.
+Obs: eu nu retin efectiv ce fel de fisier e, in schimb daca se incearca sa se
+faca o operatie nepermisa, vor fi erori de la read/write. In schimb retin
+ce fel de operatie a fost ultima efectuata (de citire. de scriere, niciuna)
+pentru so_fflush si so_ftell.
+Pentru so_feof si so_ferror, am 2 flaguri interne pe care le setez cand
+detectez eof sau eroare in timpul citirii sau scrierii
+
+# Feedback tema
+Mi-a placut tema. subiectul a fost oarecum interesant, iar workload-ul nu a
+fost foarte mare. Checkerul a fost facut foarte bine, a fost foarte foositor in
+a identifica eroriile
+
+# Git
+https://github.com/MihneaS/so/tree/master/tema2/2-stdio/checker-lin
