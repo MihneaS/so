@@ -171,7 +171,7 @@ size_t so_fread(void *ptr, size_t size, size_t nmemb, SO_FILE *stream)
 	for (i = 0; i < nmemb; i++) {
 		c = so_fgetc(stream);
 		if (c == SO_EOF)
-			return 0;
+			return i;
 		p[i] = (uint8_t)c;
 	}
 	return i;
