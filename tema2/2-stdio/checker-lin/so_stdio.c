@@ -214,12 +214,20 @@ int so_fseek(SO_FILE *stream, long offset, int whence)
 
 long so_ftell(SO_FILE *stream)
 {
-	off_t tmp = lseek(stream->fd, 0, SEEK_CUR);
+	off_t off = lseek(stream->fd, 0, SEEK_CUR);
 
-	if (tmp < 0)
+	if (off < 0)
 		return -1;
-	else
-		return tmp;
+	switch (stream->last_op) {
+	case OP_NONE:
+		return off;
+	case OP_WRITE:
+		return off + stream->bcur - stream->buf;
+	case OP_READ:
+		return off - (stream->bend - stream->buf);
+	default: // stream->last_op was corrupted or missmanaged
+		return -1;
+	}
 }
 
 int so_fflush(SO_FILE *stream)
