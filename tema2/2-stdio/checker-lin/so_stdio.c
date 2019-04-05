@@ -193,13 +193,18 @@ size_t so_fwrite(const void *ptr, size_t size, size_t nmemb, SO_FILE *stream)
 
 int so_fseek(SO_FILE *stream, long offset, int whence)
 {
+	off_t tmp;
 
-	off_t tmp = lseek(stream->fd, offset, whence);
-
-	if (stream->last_op == OP_WRITE)
+	if (stream->last_op == OP_WRITE) {
 		so_fflush(stream);
-	else
+	} else {
 		invalidate_buf(stream);
+		offset -= stream->bend - stream->bcur;
+	}
+
+	stream->last_op = OP_NONE;
+
+	tmp = lseek(stream->fd, offset, whence);
 
 	if (tmp < 0)
 		return -1;
@@ -233,6 +238,7 @@ int so_fflush(SO_FILE *stream)
 		return SO_EOF;
 	}
 	stream->bcur = stream->buf;
+	stream->last_op = OP_NONE;
 	return 0;
 }
 
