@@ -93,11 +93,17 @@ int so_fclose(SO_FILE *stream)
 		return SO_EOF;
 	if (!is_buf_empty(stream) && stream->last_op == OP_WRITE) {
 		tmp = so_fflush(stream);
-		if (tmp != 0)
+		if (tmp != 0) {  // nu ar trebui sa close(stream->fd)?
+			free(stream->buf);
+			free(stream);
 			return SO_EOF;
+		}
 	}
-	if (close(stream->fd) != 0)
+	if (close(stream->fd) != 0) {
+		free(stream->buf);
+		free(stream);
 		return SO_EOF;
+	}
 	free(stream->buf);
 	free(stream);
 	return 0;
