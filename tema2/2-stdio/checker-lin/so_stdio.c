@@ -224,7 +224,7 @@ long so_ftell(SO_FILE *stream)
 	case OP_WRITE:
 		return off + stream->bcur - stream->buf;
 	case OP_READ:
-		return off - (stream->bend - stream->buf);
+		return off - (stream->bend - stream->bcur);
 	default: // stream->last_op was corrupted or missmanaged
 		return -1;
 	}
