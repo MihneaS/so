@@ -93,8 +93,8 @@ int so_fclose(SO_FILE *stream)
 		return SO_EOF;
 	if (!is_buf_empty(stream) && stream->last_op == OP_WRITE) {
 		tmp = so_fflush(stream);
-		//if (tmp != 0)
-		//	return SO_EOF;
+		if (tmp != 0)
+			return SO_EOF;
 	}
 	if (close(stream->fd) != 0)
 		return SO_EOF;
@@ -111,7 +111,7 @@ int so_fgetc(SO_FILE *stream)
 		return SO_EOF; // TODO trebuie sa setez error?
 
 	so_fflush(stream);
-	stream->last_op = OP_WRITE;
+	stream->last_op = OP_READ;
 
 	if (stream->bcur == stream->bend) {
 		result = read(stream->fd, stream->buf, _BUFLEN);
@@ -135,7 +135,7 @@ int so_fputc(int c, SO_FILE *stream)
 	if (stream->buf == NULL)
 		return SO_EOF;
 
-	stream->last_op = OP_READ;
+	stream->last_op = OP_WRITE;
 
 	*stream->bcur++ = (uint8_t)c;
 	if (stream->bcur == stream->buf + _BUFLEN) {
@@ -217,7 +217,7 @@ int so_fflush(SO_FILE *stream)
 
 	if (stream == NULL)
 		return SO_EOF;
-	if (stream->last_op != OP_READ)//OP_WRITE) // TODO
+	if (stream->last_op != OP_WRITE) // TODO
 		return SO_EOF;
 	result = write(stream->fd,
 			stream->buf,
